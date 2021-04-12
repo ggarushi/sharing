@@ -1,8 +1,10 @@
 const express=require("express");
 const mongoose=require("mongoose");
 const {Mongourl}=require('./key');
+require('./models/users')
 const PORT=3000
 const app=express()
+
 mongoose.connect(Mongourl,{useNewUrlParser:true,
     useUnifiedTopology:true
 })
