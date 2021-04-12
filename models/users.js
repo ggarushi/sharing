@@ -1,4 +1,4 @@
-const  moongoose=require('moongoose');
+const  mongoose=require('mongoose');
 const userSchema=new mongoose.Schema({
     name:{
         type:String,
@@ -14,4 +14,4 @@ const userSchema=new mongoose.Schema({
     }
 })
 //Schema for collection user
-moongoose.model("User",userSchema)
+mongoose.model("User",userSchema)
