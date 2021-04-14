@@ -4,6 +4,8 @@ const {Mongourl}=require('./key');
 const PORT=3000
 const app=express();
 app.use(express.json())
+//put it above router/auth otherwise Schema won't be initialized.
+require('./models/users');
 app.use(require('./routers/auth'))
 mongoose.connect(Mongourl,{useNewUrlParser:true,
     useUnifiedTopology:true
@@ -17,4 +19,3 @@ mongoose.connection.on('error',(err)=>{
 app.listen(PORT,()=>{
     console.log("running")
 })
-require('./models/users');
