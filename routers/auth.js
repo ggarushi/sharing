@@ -4,6 +4,8 @@ const router=express.Router();
 const mongoose=require('mongoose');
 const User=mongoose.model('User');
 const bcrypt=require('bcryptjs');
+const jwt=require('jsonwebtoken');
+const {JWT_KEY}=require("../key")
 //for get request
 router.get('/',(req,res)=>{
     res.send('hello')
@@ -53,10 +55,13 @@ router.post('/signin',(req,res)=>{
         {
             return res.status(422).json({error:"Invalid Email or Password"})
         }
+        //matching bcrypted password
         bcrypt.compare(password,suser.password).then(matched=>{
             if(matched)
            { 
-               res.status(200).json({message:"Successfully joined"})
+               const token=jwt.sign({_id:suser._id},JWT_KEY);
+               res.json({token})
+            //    res.status(200).json({message:"Successfully joined"})
         }
         else{
             return res.status(422).json({error:"Invalid Email or Password"})
