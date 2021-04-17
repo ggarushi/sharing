@@ -6,9 +6,9 @@ const app=express();
 app.use(express.json())
 //put it above router/auth otherwise Schema won't be initialized.
 require('./models/users');
-require('./models.post')
+require('./models/post')
 app.use(require('./routers/auth'))
-app.use(require('./routes/post'))
+app.use(require('./routers/post'))
 mongoose.connect(Mongourl,{useNewUrlParser:true,
     useUnifiedTopology:true
 })
