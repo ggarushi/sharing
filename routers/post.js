@@ -3,6 +3,16 @@ const router=express.Router();
 const mongoose=require('mongoose')
 const requireLogin=require('../middlewares/requireLogin');
 const Post=mongoose.model('Post');
+router.get('/allposts',(req,res)=>{
+    Post.find().populate("postedBy","_id name").then(
+        posts=>{
+            res.json({posts})
+        }
+    )
+    .catch(error=>{
+        console.log(error)
+    })
+})
 router.post('/createpost',requireLogin,(req,res)=>{
     const {title,body}=req.body
     if(!title || !body){
@@ -14,7 +24,7 @@ router.post('/createpost',requireLogin,(req,res)=>{
     const post= new Post({
         title,
         body,
-        postBy:req.user
+        postedBy:req.user
     })
     post.save().then(result=>{
         res.json({post:result})
