@@ -1,5 +1,6 @@
 import React from 'react';
 import '../../App.css';
+import {Link} from 'react-router-dom';
 const Login=()=>{
     return (
         <div className="top-card">
@@ -14,6 +15,9 @@ const Login=()=>{
                 <button className="signin_button">
                     SignIn
                 </button>
+                <h5 className="bottom">
+                    <Link to="/signup" style={{textDecoration:"none",color:"black"}}>Don't have an account?</Link>
+                </h5>
             </div>
         </div>
     )
