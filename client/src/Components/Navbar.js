@@ -5,16 +5,16 @@ const Navbar=()=>{
     const[formobile,setmobile]=useState(false);
     return(
         <nav className="navbar">
-            <h3 className="logo">LOGO</h3>
+            <Link to="/" className="logo"><h3>Sharing</h3></Link>
             <ul className={formobile? "nav-links-mobile":"nav-links"}
             onClick={()=>setmobile(false)}>
-                <Link to="/" className="login">
+                <Link to="/signin" className="login">
                     <li>Login</li>
                 </Link>
-                <Link to="/" className="signup">
+                <Link to="/signup" className="signup">
                     <li>Signup</li>
                 </Link>
-                <Link to="/" className="profile">
+                <Link to="/profile" className="profile">
                     <li>Profile</li>
                 </Link>
             </ul>
@@ -26,3 +26,4 @@ const Navbar=()=>{
         </nav>
     )
 }
+export default Navbar;

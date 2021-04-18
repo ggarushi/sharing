@@ -13,6 +13,8 @@
 }
 .logo{
     font-size:30px;
+    color:white;
+    text-decoration:none;
 }
 .nav-links{
     display:flex;
