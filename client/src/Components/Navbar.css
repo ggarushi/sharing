@@ -10,10 +10,12 @@
     height:75px;
     background-color:orchid;
     color:white;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.9);
 }
 .logo{
     font-size:30px;
     color:white;
+    font-family: 'Grand Hotel', cursive;
     text-decoration:none;
 }
 .nav-links{
