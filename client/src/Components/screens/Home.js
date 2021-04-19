@@ -11,7 +11,7 @@ const Home=()=>{
                 <div className="card-content">
                     <h6>title</h6>
                     <p style={{fontSize:"1.3em"}}>amazing post</p>
-                    <input type="text" placeholder="add a comment"/>
+                    <input className="card-input" type="text" placeholder="add a comment"/>
                 </div>
             </div>
         </div>

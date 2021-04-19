@@ -21,10 +21,26 @@ h5 {
     margin-left:10px;
   }
   h6 {
-    font-size:1.4em;
+    font-size:1.3em;
     font-weight:normal ;
   }
   .card-content{
       margin:10px;
   }
-  
+  .card-input{
+      /* margin-top:2px; */
+      outline:0;
+      border-width:0 0 2px;
+      width:100%;
+  }
+  .card-input:focus{
+   border-color:rgb(125, 125, 248);
+}
+@media screen and (max-width: 780px){
+    .inner-card{
+        margin-bottom: 40px;
+        margin-left : 5%;
+        margin-right: 5%;
+        margin-top:8%; 
+    }
+}  
