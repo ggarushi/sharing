@@ -9,6 +9,7 @@ const Home=()=>{
                 <img className="ca-img" src="https://images.unsplash.com/photo-1618678419688-a6dd93d0aa10?ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwxNXx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="profile"/>
                 </div>
                 <div className="card-content">
+                <i className="fa fa-thumbs-up" aria-hidden="true"></i>
                     <h6>title</h6>
                     <p style={{fontSize:"1.3em"}}>amazing post</p>
                     <input className="card-input" type="text" placeholder="add a comment"/>
