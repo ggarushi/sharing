@@ -1,0 +1,28 @@
+.Outer{
+    display:flex;
+    justify-content:space-around;
+    margin:18px 0px;
+    border-bottom: 1px solid grey;
+
+}
+.profile-info{
+    display:flex;
+    justify-content: space-between;
+    width:106%;
+}
+h2 {
+    font-size:1.7em;
+    font-weight:200px ;
+  }
+  h4 {
+   
+    font-weight:normal ;
+  }
+  .gallery{
+      display:flex;
+      flex-wrap:wrap;
+      justify-content:space-around;
+  }
+  .item{
+      width:30%;
+  }
