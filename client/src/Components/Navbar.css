@@ -3,7 +3,7 @@
     padding:0;
     box-sizing:border-box;
 }
-.navbar{
+.navbarown{
     display:flex;
     justify-content:space-around;
     align-items:center;

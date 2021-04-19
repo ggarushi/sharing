@@ -4,7 +4,7 @@ import "./Navbar.css";
 const Navbar=()=>{
     const[formobile,setmobile]=useState(false);
     return(
-        <nav className="navbar">
+        <nav className="navbarown">
             <Link to="/" className="logo"><h3>Sharing</h3></Link>
             <ul className={formobile? "nav-links-mobile":"nav-links"}
             onClick={()=>setmobile(false)}>
@@ -16,6 +16,9 @@ const Navbar=()=>{
                 </Link>
                 <Link to="/profile" className="profile">
                     <li>Profile</li>
+                </Link>
+                <Link to="/createpost" className="profile">
+                    <li>Create Post</li>
                 </Link>
             </ul>
             <button className="mobile-menu"
