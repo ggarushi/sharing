@@ -10,7 +10,7 @@
     max-width:340px;
     /* border: 3px solid green; */
     padding:40px;
-    margin-top: 150px;
+    margin-top: 125px;
     box-shadow: 0 2px 4px 0 rgba(0,0,0,0.9);
 }
 .auth-card{
@@ -46,4 +46,9 @@ input:focus{
 }
 .bottom{
    margin-top:15px;
+}
+#toast-container{
+    top:30px !important;
+    right:20px !important;
+    left:auto !important;
 }
