@@ -1,7 +1,7 @@
 const express=require("express");
 const mongoose=require("mongoose");
 const {Mongourl}=require('./key');
-const PORT=3000
+const PORT=5000
 const app=express();
 app.use(express.json())
 //put it above router/auth otherwise Schema won't be initialized.
