@@ -19,7 +19,7 @@ const CreatePost=()=>{
              body:JSON.stringify({
                  title,
                  body,
-                 pic:url
+                 picurl:url
              })
          }).then(res=>res.json())
          .then(data=>{
