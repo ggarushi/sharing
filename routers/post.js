@@ -14,8 +14,8 @@ router.get('/allposts',(req,res)=>{
     })
 })
 router.post('/createpost',requireLogin,(req,res)=>{
-    const {title,body}=req.body
-    if(!title || !body){
+    const {title,body,picurl}=req.body
+    if(!title || !body||!picurl){
         console.log(req.user)
         return res.status(422).json({error:"please fill all the fields"})
     }
@@ -24,6 +24,7 @@ router.post('/createpost',requireLogin,(req,res)=>{
     const post= new Post({
         title,
         body,
+        picurl,
         postedBy:req.user
     })
     post.save().then(result=>{

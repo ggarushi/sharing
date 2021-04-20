@@ -62,7 +62,8 @@ router.post('/signin',(req,res)=>{
             if(matched)
            { 
                const token=jwt.sign({_id:suser._id},JWT_KEY);
-               res.json({token})
+               const {_id,name,email}=suser
+               res.json({token,user:{_id,name,email}})
             //    res.status(200).json({message:"Successfully joined"})
         }
         else{
