@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React,{useState,useEffect} from 'react';
 import M from 'materialize-css'
 import {useHistory} from 'react-router-dom'
 import './createpost.css';
@@ -8,6 +8,34 @@ const CreatePost=()=>{
     const [body,setbody]=useState("")
     const [image,setimage]=useState("")
     const [url,setUrl] = useState("")
+    useEffect(()=>{
+        if(url){
+         fetch("/createpost",{
+             method:"post",
+             headers:{
+                 "Content-Type":"application/json",
+                 "Authorization":"Bearer "+localStorage.getItem("jwt")
+             },
+             body:JSON.stringify({
+                 title,
+                 body,
+                 pic:url
+             })
+         }).then(res=>res.json())
+         .then(data=>{
+     
+            if(data.error){
+               M.toast({html: data.error,classes:"#c62828 red darken-3"})
+            }
+            else{
+                M.toast({html:"Created post Successfully",classes:"#43a047 green darken-1"})
+                history.push('/')
+            }
+         }).catch(err=>{
+             console.log(err)
+         })
+     }
+     },[url])
     const postDetails = ()=>{
         const data = new FormData()
         data.append("file",image)
@@ -24,31 +52,7 @@ const CreatePost=()=>{
         .catch(err=>{
             console.log(err)
         })
-        fetch("/createpost",{
-            method:"post",
-            headers:{
-                "Content-Type":"application/json",
-                // "Authorization":"Bearer "+localStorage.getItem("jwt")
-            },
-            body:JSON.stringify({
-                title,
-                body,
-                picurl:url
-            })
-        }).then(res=>res.json())
-        .then(data=>{
-    
-           if(data.error){
-              M.toast({html: data.error,classes:"#c62828 red darken-3"})
-           }
-           else{
-               M.toast({html:"Created post Successfully",classes:"#43a047 green darken-1"})
-               history.push('/')
-           }
-        }).catch(err=>{
-            console.log(err)
-        })
-     
+      
     }
     return (
         <div className="card-filed">
