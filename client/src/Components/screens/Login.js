@@ -47,7 +47,7 @@ const Login=()=>{
                 value={email}
             onChange={(e)=>setEmail(e.target.value)}
                 />
-                <input className="signin_input" type="text"
+                <input className="signin_input" type="password"
                 placeholder="password"
                 value={password}
                 onChange={(e)=>setPassword(e.target.value)}
