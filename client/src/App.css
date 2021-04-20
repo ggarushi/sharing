@@ -47,8 +47,10 @@ input:focus{
 .bottom{
    margin-top:15px;
 }
-#toast-container{
+.toast-c{
     top:30px !important;
     right:20px !important;
     left:auto !important;
+    border:1px solid green;
+    background-color: #3f51b5;
 }

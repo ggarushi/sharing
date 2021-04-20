@@ -1,6 +1,8 @@
-import React from 'react';
+import React,{useState} from 'react';
 import './createpost.css';
 const CreatePost=()=>{
+    const [title,settitle]=useState=("")
+    const [body,setbody]=useState=("")
     return (
         <div className="card-filed">
             <input className="create-input" type="text" placeholder="title"/>
