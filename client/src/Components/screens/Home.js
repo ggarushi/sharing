@@ -1,20 +1,37 @@
-import React from 'react';
+import React,{useState,useEffect} from 'react';
 import './Home.css';
 const Home=()=>{
+    const [data,setData]=useState([])
+    useEffect(()=>{
+        fetch('/allposts',{
+            headers:{
+                "Authorization":"Bearer "+localStorage.getItem("jwt")
+            }
+        }).then(res=>res.json())
+        .then(result=>{
+            console.log(result)
+            setData(result.posts)
+        })
+    },[])
     return (
         <div className="Outer-card">
-            <div className="inner-card">
-                <h5>ramesh</h5>
+           {
+               data.map(item=>{
+                   return(  
+                <div className="inner-card">
+                <h5>{item.postedBy.name}</h5>
                 <div className="card-image">
-                <img className="ca-img" src="https://images.unsplash.com/photo-1618678419688-a6dd93d0aa10?ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwxNXx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="profile"/>
+                <img className="ca-img" src={item.photo} alt="profile"/>
                 </div>
                 <div className="card-content">
                 <i className="fa fa-thumbs-up" aria-hidden="true"></i>
-                    <h6>title</h6>
-                    <p style={{fontSize:"1.3em"}}>amazing post</p>
+                    <h6>{item.title}</h6>
+                    <p style={{fontSize:"1.3em"}}>{item.body}</p>
                     <input className="card-input" type="text" placeholder="add a comment"/>
                 </div>
-            </div>
+            </div>)
+               })
+           }
         </div>
         
         
