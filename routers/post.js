@@ -3,7 +3,7 @@ const router=express.Router();
 const mongoose=require('mongoose')
 const requireLogin=require('../middlewares/requireLogin');
 const Post=mongoose.model('Post');
-router.get('/allposts',(req,res)=>{
+router.get('/allposts',requireLogin,(req,res)=>{
     Post.find().populate("postedBy","_id name").then(
         posts=>{
             res.json({posts})
