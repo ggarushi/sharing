@@ -24,7 +24,7 @@ const Login=()=>{
             })
         }).then(res=>res.json())
         .then(data=>{
-            console.log(data);
+            // console.log(data);
            if(data.error){
              
             //    <div className="toast_c">{ M.toast({html:data.error,classes:"#3f51b5 indigo"})}</div>
