@@ -26,7 +26,8 @@
 }
 .login,
 .signup,
-.profile{
+.profile,
+.logout{
 text-decoration:none ;
 color:white;
 font-size:20px;
@@ -37,6 +38,11 @@ cursor:pointer;
 .mobile-menu{
     display:none
 }
+/* .logout{
+    border:1px solid red; 
+     background-color:red;
+    border-radius: 5px;
+} */
 @media screen and (max-width: 780px){
 
 .logo{
@@ -58,9 +64,11 @@ cursor:pointer;
     transition: all 0.5s ease-out;
     width:100%;
 }
+
 .login,
 .profile,
-.signup{
+.signup,
+.logout{
     color:white;
     padding:32px;
     width:100%;

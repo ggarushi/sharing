@@ -1,10 +1,12 @@
-import React,{useState,useContext} from 'react';
-import {Link} from 'react-router-dom';
+import React,{useState,useContext,useEffect} from 'react';
+import {Link,useHistory} from 'react-router-dom';
 import {UserContext} from '../App';
 import "./Navbar.css";
 const Navbar=()=>{
     const {state,dispatch}=useContext(UserContext)
     const[formobile,setmobile]=useState(false);
+    const history=useHistory();
+    
     const renderList=()=>{
         if(state){
         return [
@@ -13,7 +15,21 @@ const Navbar=()=>{
             </Link>,
             <Link to="/createpost" className="profile">
             <li>Create Post</li>
-            </Link>
+            </Link>,
+             <Link to="/signin" className="logout" onClick={()=>{
+                 localStorage.clear()
+                 dispatch({type:"CLEAR"})
+             }}>
+             <li>LOG OUT</li>
+             </Link>
+            //  <button className="logout" onClick={()=>{
+            //     localStorage.clear()
+            //     dispatch({type:"CLEAR"})
+            //     history.push('/signin')
+            // }}>
+            // <li>LOG OUT</li>
+            // </button>
+            
         ]}
         else{
             return [

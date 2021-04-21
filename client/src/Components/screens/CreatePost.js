@@ -1,6 +1,7 @@
-import React,{useState,useEffect} from 'react';
+import React,{useState,useEffect,useContext} from 'react';
 import M from 'materialize-css'
 import {useHistory} from 'react-router-dom'
+import {UserContext} from '../../App';
 import './createpost.css';
 const CreatePost=()=>{
     const history = useHistory()
@@ -8,7 +9,13 @@ const CreatePost=()=>{
     const [body,setbody]=useState("")
     const [image,setimage]=useState("")
     const [url,setUrl] = useState("")
+    const {state,dispatch}=useContext(UserContext)
     useEffect(()=>{
+        const user=JSON.parse(localStorage.getItem("user"))
+    if(!user){
+      dispatch({type:"CLEAR"})
+      history.push('/signin')
+    }
         if(url){
          fetch("/createpost",{
              method:"post",

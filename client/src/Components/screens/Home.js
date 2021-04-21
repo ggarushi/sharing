@@ -1,15 +1,24 @@
-import React,{useState,useEffect} from 'react';
+import React,{useState,useEffect,useContext} from 'react';
+import {UserContext} from '../../App';
+import {useHistory} from 'react-router-dom'
 import './Home.css';
 const Home=()=>{
     const [data,setData]=useState([])
+    const {state,dispatch}=useContext(UserContext)
+    const history = useHistory()
     useEffect(()=>{
+        const user=JSON.parse(localStorage.getItem("user"))
+        if(!user){
+          dispatch({type:"CLEAR"})
+          history.push('/signin')
+        }
         fetch('/allposts',{
             headers:{
                 "Authorization":"Bearer "+localStorage.getItem("jwt")
             }
         }).then(res=>res.json())
         .then(result=>{
-            console.log(result)
+            // console.log(result)
             setData(result.posts)
         })
     },[])
