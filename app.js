@@ -10,7 +10,8 @@ require('./models/post')
 app.use(require('./routers/auth'))
 app.use(require('./routers/post'))
 mongoose.connect(Mongourl,{useNewUrlParser:true,
-    useUnifiedTopology:true
+    useUnifiedTopology:true,
+    useFindAndModify: false
 })
 mongoose.connection.on('connected',()=>{
     console.log("connected")
