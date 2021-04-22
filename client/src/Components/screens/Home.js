@@ -21,7 +21,7 @@ const Home=()=>{
             // console.log(result)
             setData(result.posts)
         })
-    },[])
+    },[data])
     const likePost = (id)=>{
         fetch('/like',{
             method:"put",
@@ -99,13 +99,30 @@ const Home=()=>{
               console.log(err)
           })
   }
+  const deletePost = (postid)=>{
+    fetch(`/deletepost/${postid}`,{
+        method:"delete",
+        headers:{
+            Authorization:"Bearer "+localStorage.getItem("jwt")
+        }
+    }).then(res=>res.json())
+    .then(result=>{
+        console.log(result)
+        const newData = data.filter(item=>{
+            return item._id !== result._id
+        })
+        setData(newData)
+    })
+}
     return (
         <div className="Outer-card">
            {
                data.map(item=>{
                    return(  
-                <div className="inner-card">
-                <h5>{item.postedBy.name}</h5>
+                <div className="inner-card" key={item._id}>
+                <h5>{item.postedBy.name}
+                {item.postedBy._id==state._id && 
+                <i className="fa fa-trash" aria-hidden="true" style={{float:"right" }} onClick={()=>deletePost(item._id)}></i>}</h5>
                 <div className="card-image">
                 <img className="ca-img" src={item.photo} alt="profile"/>
                 </div>
