@@ -9,6 +9,7 @@ require('./models/users');
 require('./models/post')
 app.use(require('./routers/auth'))
 app.use(require('./routers/post'))
+app.use(require('./routers/user'))
 mongoose.connect(Mongourl,{useNewUrlParser:true,
     useUnifiedTopology:true,
     useFindAndModify: false
