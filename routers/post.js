@@ -4,7 +4,8 @@ const mongoose=require('mongoose')
 const requireLogin=require('../middlewares/requireLogin');
 const Post=mongoose.model('Post');
 router.get('/allposts',requireLogin,(req,res)=>{
-    Post.find().populate("postedBy","_id name").then(
+    Post.find().populate("postedBy","_id name")
+    .populate("comments.postedBy","_id name").then(
         posts=>{
             res.json({posts})
         }
@@ -70,7 +71,7 @@ router.put('/unlike',requireLogin,(req,res)=>{
 })
 router.put('/comment',requireLogin,(req,res)=>{
     const comment={
-        text=req.body.text,
+        text:req.body.text,
         postedBy:req.user._id
     }
     Post.findByIdAndUpdate(req.body.postId,{
@@ -78,7 +79,9 @@ router.put('/comment',requireLogin,(req,res)=>{
     },{
         new:true
     })
-    .populate("comments.postedBy","_id name").exec((err,result)=>{
+    .populate("comments.postedBy","_id name")
+    .populate("postedBy","_id name")
+    .exec((err,result)=>{
         if(err){
             return res.status(422).json({error:err})
         }else{
