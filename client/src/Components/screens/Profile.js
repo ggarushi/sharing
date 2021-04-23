@@ -28,7 +28,7 @@ const Profile=()=>{
             <div className="Outer">
                 <div>
                     <img style={{width:'160px',height:'160px',borderRadius:"80px"}} 
-                    src="https://images.unsplash.com/photo-1618678419688-a6dd93d0aa10?ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwxNXx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="profile"/>
+                    src={state.pic} alt="profile"/>
                 </div>
                 <div>
                     <h2>{state?state.name:"loading"}</h2>

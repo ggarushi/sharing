@@ -61,7 +61,7 @@ const Home=()=>{
         .then(result=>{
           //   console.log(result)
           const newData = data.map(item=>{
-              if(item._id==result._id){
+              if(item._id===result._id){
                   return result
               }else{
                   return item
@@ -88,7 +88,7 @@ const Home=()=>{
     .then(result=>{
         console.log(result)
         const newData = data.map(item=>{
-          if(item._id==result._id){
+          if(item._id===result._id){
               return result
           }else{
               return item
