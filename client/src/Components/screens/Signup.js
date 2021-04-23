@@ -8,7 +8,7 @@ const Signup=()=>{
     const [password,setPassword]=useState("");
     const [email,setEmail]=useState("");
    const [image,setimage]=useState("")
-   const[url,setUrl]=useState("")
+   const[url,setUrl]=useState(undefined)
     const history=useHistory();
     useEffect(()=>{
         if(url){
