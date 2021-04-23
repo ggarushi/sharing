@@ -16,6 +16,9 @@ const Navbar=()=>{
             <Link to="/createpost" className="profile">
             <li>Create Post</li>
             </Link>,
+            <Link to="/followerspost" className="profile">
+            <li>Posts</li>
+            </Link>,
              <Link to="/signin" className="logout" onClick={()=>{
                  localStorage.clear()
                  dispatch({type:"CLEAR"})

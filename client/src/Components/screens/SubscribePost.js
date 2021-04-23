@@ -2,7 +2,7 @@ import React,{useState,useEffect,useContext} from 'react';
 import {UserContext} from '../../App';
 import {Link,useHistory} from 'react-router-dom'
 import './Home.css';
-const Home=()=>{
+const SubscribePost=()=>{
     const [data,setData]=useState([])
     const {state,dispatch}=useContext(UserContext)
     const history = useHistory()
@@ -12,7 +12,7 @@ const Home=()=>{
           dispatch({type:"CLEAR"})
           history.push('/signin')
         }
-        fetch('/allposts',{
+        fetch('/subposts',{
             headers:{
                 "Authorization":"Bearer "+localStorage.getItem("jwt")
             }
@@ -155,4 +155,4 @@ const Home=()=>{
         
     )
 }
-export default Home;
+export default SubscribePost;

@@ -8,6 +8,7 @@ import Profile from './Components/screens/Profile';
 import CreatePost from './Components/screens/CreatePost';
 import {reducer,initialState} from './Reducers/userReducer';
 import UserProfile from './Components/screens/UserProfile'
+import SubscribePost from './Components/screens/SubscribePost';
 export const UserContext=createContext()
 const Routing=()=>{
   const history=useHistory()
@@ -42,6 +43,9 @@ const Routing=()=>{
     <Route path="/profile/:userid">
         <UserProfile />
       </Route>
+    <Route path="/followerspost">
+        <SubscribePost />
+    </Route>
   </Switch>
 
 }

@@ -38,6 +38,7 @@ h5 {
   .card-input:focus{
    border-color:rgb(125, 125, 248);
 }
+
 @media screen and (max-width: 780px){
     .inner-card{
         margin-bottom: 40px;

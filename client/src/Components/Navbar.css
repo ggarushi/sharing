@@ -24,6 +24,9 @@
     list-style:none;
     width:75%
 }
+li:hover{
+    opacity:0.8;
+}
 .login,
 .signup,
 .profile,

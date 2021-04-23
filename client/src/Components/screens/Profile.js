@@ -32,6 +32,7 @@ const Profile=()=>{
                 </div>
                 <div>
                     <h2>{state?state.name:"loading"}</h2>
+                    <h2>{state?state.email:"loading"}</h2>
                     <div className="profile-info">
                         <h4>{mypics.length} posts</h4>
                         <h4>{state?state.followers.length:"0"} followers</h4>

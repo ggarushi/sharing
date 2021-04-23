@@ -108,7 +108,7 @@ const UserProfile  = ()=>{
                    }} className="btn"
                     onClick={()=>followUser()}
                     >
-                        Follow
+                        FOLLOW
                     </button>
                     : 
                     <button
@@ -117,7 +117,7 @@ const UserProfile  = ()=>{
                     }} className="btn"
                     onClick={()=>unfollowUser()}
                     >
-                        UnFollow
+                        UNFOLLOW
                     </button>
                     }
                    
