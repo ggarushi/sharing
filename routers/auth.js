@@ -15,7 +15,7 @@ router.get("/protected",requireLogin,(req,res)=>{
 //for signup request
 router.post("/signup",(req,res)=>{
     //object destructring
-    const {name,email,password}=req.body
+    const {name,email,password,pic}=req.body
     if(!email || !password ||!name)
     {
         return res.status(422).json({error:"please fill all the fields"})
@@ -30,7 +30,8 @@ router.post("/signup",(req,res)=>{
         const user =new User({
             name,
            email,
-            password:passwordhash
+            password:passwordhash,
+            pic
         })
         user.save().then((user)=>{
             return res.status(200).json({message:"Succefullly added"})
@@ -62,8 +63,8 @@ router.post('/signin',(req,res)=>{
             if(matched)
            { 
                const token=jwt.sign({_id:suser._id},JWT_KEY);
-               const {_id,name,email,followers,following}=suser
-               res.json({token,user:{_id,name,email,followers,following}})
+               const {_id,name,email,followers,following,pic}=suser
+               res.json({token,user:{_id,name,email,followers,following,pic}})
             //    res.status(200).json({message:"Successfully joined"})
         }
         else{
