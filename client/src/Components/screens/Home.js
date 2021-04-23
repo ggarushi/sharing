@@ -1,6 +1,6 @@
 import React,{useState,useEffect,useContext} from 'react';
 import {UserContext} from '../../App';
-import {useHistory} from 'react-router-dom'
+import {Link,useHistory} from 'react-router-dom'
 import './Home.css';
 const Home=()=>{
     const [data,setData]=useState([])
@@ -120,7 +120,7 @@ const Home=()=>{
                data.map(item=>{
                    return(  
                 <div className="inner-card" key={item._id}>
-                <h5>{item.postedBy.name}
+                <h5><Link to={item.postedBy._id !== state._id?"/profile/"+item.postedBy._id :"/profile"  }>{item.postedBy.name}</Link>
                 {item.postedBy._id==state._id && 
                 <i className="fa fa-trash" aria-hidden="true" style={{float:"right" }} onClick={()=>deletePost(item._id)}></i>}</h5>
                 <div className="card-image">
