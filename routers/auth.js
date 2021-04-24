@@ -5,7 +5,7 @@ const mongoose=require('mongoose');
 const User=mongoose.model('User');
 const bcrypt=require('bcryptjs');
 const jwt=require('jsonwebtoken');
-const {JWT_KEY}=require("../key")
+const {JWT_KEY}=require("../config/key")
 
 const requireLogin=require('../middlewares/requireLogin');
 //for get request
