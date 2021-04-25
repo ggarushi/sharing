@@ -6,8 +6,16 @@ const User=mongoose.model('User');
 const bcrypt=require('bcryptjs');
 const jwt=require('jsonwebtoken');
 const {JWT_KEY}=require("../config/key")
-
+const nodemailer = require('nodemailer')
+const sendgridTransport = require('nodemailer-sendgrid-transport')
+const crypto=require('crypto')
 const requireLogin=require('../middlewares/requireLogin');
+const {SENDGRID_API,EMAIL}=require('../config/key')
+const transporter = nodemailer.createTransport(sendgridTransport({
+    auth:{
+        api_key:SENDGRID_API
+    }
+}))
 //for get request
 router.get("/protected",requireLogin,(req,res)=>{
     res.send('hello')
@@ -77,4 +85,56 @@ router.post('/signin',(req,res)=>{
     })
 
 })
+router.post('/reset-password',(req,res)=>{
+    // res.json({message:"done"})
+    crypto.randomBytes(32,(err,buffer)=>{
+        if(err){
+            console.log(err)
+        }
+        const token = buffer.toString("hex")
+        User.findOne({email:req.body.email})
+        .then(user=>{
+            if(!user){
+                return res.status(422).json({error:"User dont exists with that email"})
+            }
+            console.log(token);
+            user.resetToken = token
+            user.expireToken = Date.now() + 3600000
+            user.save().then((result)=>{
+                transporter.sendMail({
+                    to:user.email,
+                    from:"ggarushi_be18@thapar.edu",
+                    subject:"password reset",
+                    html:`
+                    <p>You requested for password reset</p>
+                    <h5>click in this <a href="${EMAIL}/reset/${token}">link</a> to reset password</h5>
+                    `
+                })
+                res.json({message:"check your email"})
+            })
+
+        })
+     })
+})
+router.post('/new-password',(req,res)=>{
+    const newPassword = req.body.password
+    const sentToken = req.body.token
+    User.findOne({resetToken:sentToken,expireToken:{$gt:Date.now()}})
+    .then(user=>{
+        if(!user){
+            return res.status(422).json({error:"Try again session expired"})
+        }
+        bcrypt.hash(newPassword,12).then(hashedpassword=>{
+           user.password = hashedpassword
+           user.resetToken = undefined
+           user.expireToken = undefined
+           user.save().then((saveduser)=>{
+               res.json({message:"password updated success"})
+           })
+        })
+    }).catch(err=>{
+        console.log(err)
+    })
+})
+
 module.exports=router
