@@ -2,10 +2,9 @@ import React,{useState,useContext} from 'react';
 import '../../App.css';
 import {Link,useHistory} from 'react-router-dom';
 import M from 'materialize-css';
-import {UserContext} from '../../App'
-const Login=()=>{
-    const {state,dispatch}=useContext(UserContext)
-    const [password,setPassword]=useState("");
+
+const Reset=()=>{
+    
     const [email,setEmail]=useState("");
     const history=useHistory();
     const PostData=()=>{
@@ -13,13 +12,13 @@ const Login=()=>{
             M.toast({html: "invalid email",classes:"#c62828 red darken-3"})
             return
         }
-        fetch("/signin",{
+        
+        fetch('/reset-password',{
             method:"post",
             headers:{
                 "Content-Type":"application/json"
             },
             body:JSON.stringify({
-                password,
                 email
             })
         }).then(res=>res.json())
@@ -31,11 +30,9 @@ const Login=()=>{
                M.toast({html:data.error,classes:"#3f51b5 indigo"})
            }
            else{
-            localStorage.setItem("jwt",data.token)
-            localStorage.setItem("user",JSON.stringify(data.user))
-            dispatch({type:"USER",payload:data.user})   
-            M.toast({html:"Successfully signed in",classes:"#43a047 green darken-1"})
-               history.push('/');
+           
+            M.toast({html:data.message})
+               history.push('/signin');
            }
         }).catch(error=>{
             console.log(error);
@@ -50,22 +47,13 @@ const Login=()=>{
                 value={email}
             onChange={(e)=>setEmail(e.target.value)}
                 />
-                <input className="signin_input" type="password"
-                placeholder="password"
-                value={password}
-                onChange={(e)=>setPassword(e.target.value)}
-                />
+               
                 <button className="signin_button" onClick={()=>PostData()}>
-                    SignIn
+                    RESET PASSWORD
                 </button>
-                <h5 className="bottom">
-                    <Link to="/signup" style={{textDecoration:"none",color:"black"}}>Don't have an account?</Link>
-                </h5>
-                <h6 className="bottom">
-                    <Link to="/reset" style={{textDecoration:"none",color:"black"}}>Forgot password?</Link>
-                </h6>
+                
             </div>
         </div>
     )
 }
-export default Login;
+export default Reset;
